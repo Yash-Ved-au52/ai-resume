@@ -1,0 +1,23 @@
+/* index.css */
+/* Custom styles for better mobile responsiveness */
+@media (max-width: 480px) {
+  .chakra-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Ensure text areas are mobile friendly */
+textarea {
+  min-height: 120px;
+}
+
+/* Improve touch targets for mobile */
+button, .chakra-button {
+  min-height: 44px;
+}
+
+/* Better file input styling */
+input[type="file"] {
+  padding: 8px;
+}
