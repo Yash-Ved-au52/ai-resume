@@ -7,7 +7,7 @@ import {
   Input, 
   Textarea,
   VStack,
-  Text 
+  Text as ChakraText 
 } from '@chakra-ui/react'
 import { AttachmentIcon } from '@chakra-ui/icons'
 
@@ -60,9 +60,9 @@ const JobDescriptionForm = ({ onGenerate, isLoading }) => {
         </FormControl>
         
         {selectedFile && (
-          <Text fontSize="sm" color="gray.600">
+          <ChakraText fontSize="sm" color="gray.600">
             Selected: {selectedFile.name}
-          </Text>
+          </ChakraText>
         )}
         
         <Button
@@ -77,9 +77,9 @@ const JobDescriptionForm = ({ onGenerate, isLoading }) => {
           Generate Cover Letter
         </Button>
         
-        <Text fontSize="sm" color="gray.500" textAlign="center">
+        <ChakraText fontSize="sm" color="gray.500" textAlign="center">
           Our AI will generate a tailored cover letter based on your resume and the job description
-        </Text>
+        </ChakraText>
       </VStack>
     </Box>
   )

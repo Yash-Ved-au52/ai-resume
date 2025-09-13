@@ -15,28 +15,29 @@ const CoverLetterGenerator = () => {
     setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000)
   }
 
-  const generateCoverLetter = async (formData) => {
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/cover-letter', {
-        method: 'POST',
-        body: formData,
-      })
-      
-      if (!response.ok) {
-        throw new Error('Cover letter generation failed')
-      }
-      
-      const data = await response.json()
-      setCoverLetter(data.coverLetter || data.text)
-      showToast('Cover letter generated successfully!', 'success')
-    } catch (error) {
-      console.error('Error generating cover letter:', error)
-      showToast('Failed to generate cover letter. Please try again.')
-    } finally {
-      setIsLoading(false)
+const generateCoverLetter = async (formData) => {
+  setIsLoading(true)
+  try {
+    const response = await fetch('http://localhost:5000/api/cover-letter', {
+      method: 'POST',
+      body: formData, // ⚡ Important: FormData ke sath headers set mat karo!
+    })
+    
+    if (!response.ok) {
+      throw new Error('Cover letter generation failed')
     }
+    
+    const data = await response.json()
+    setCoverLetter(data.coverLetter || data.text)
+    showToast('Cover letter generated successfully!', 'success')
+  } catch (error) {
+    console.error('Error generating cover letter:', error)
+    showToast('Failed to generate cover letter. Please try again.')
+  } finally {
+    setIsLoading(false)
   }
+}
+
 
   return (
     <Container maxW="container.lg" py={8}>

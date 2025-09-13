@@ -18,7 +18,7 @@ const ResumeAnalysis = () => {
   const handleAnalysis = async (formData) => {
     setIsLoading(true)
     try {
-      const response = await fetch('/api/analyze-resume', {
+      const response = await fetch('http://localhost:5000/api/analyze-resume', {
         method: 'POST',
         body: formData,
       })

@@ -6,7 +6,8 @@ import {
   Button, 
   Heading, 
   HStack,
-  useToast
+  useToast,
+  Text as ChakraText
 } from '@chakra-ui/react'
 import { CopyIcon, DownloadIcon } from '@chakra-ui/icons'
 
@@ -81,9 +82,9 @@ const CoverLetterCard = ({ coverLetter }) => {
           </Button>
         </HStack>
         
-        <Text fontSize="sm" color="gray.500" textAlign="center" pt={2}>
+        <ChakraText fontSize="sm" color="gray.500" textAlign="center" pt={2}>
           Review and customize the generated cover letter before sending it with your application
-        </Text>
+        </ChakraText>
       </VStack>
     </Box>
   )

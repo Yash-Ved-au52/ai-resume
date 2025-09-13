@@ -13,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+
 // Routes
 app.use("/api/analyze-resume", analyzeResumeRoute);
 app.use("/api/cover-letter", coverLetterRoute);
