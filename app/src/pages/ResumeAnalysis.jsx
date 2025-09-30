@@ -4,6 +4,7 @@ import ResumeUploadForm from '../components/ResumeUploadForm'
 import AnalysisResultCard from '../components/AnalysisResultCard'
 import Loader from '../components/Loader'
 import ToastNotification from '../components/ToastNotification'
+import API_URL from '../utils/api'   // ✅ API URL import
 
 const ResumeAnalysis = () => {
   const [analysisResult, setAnalysisResult] = useState(null)
@@ -18,9 +19,9 @@ const ResumeAnalysis = () => {
   const handleAnalysis = async (formData) => {
     setIsLoading(true)
     try {
-      const response = await fetch('http://localhost:5000/api/analyze-resume', {
+      const response = await fetch(`${API_URL}/api/analyze-resume`, {
         method: 'POST',
-        body: formData,
+        body: formData,  // ⚡ FormData ke sath headers mat do
       })
       
       if (!response.ok) {

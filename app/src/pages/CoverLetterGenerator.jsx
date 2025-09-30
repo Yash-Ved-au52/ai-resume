@@ -4,6 +4,7 @@ import JobDescriptionForm from '../components/JobDescriptionForm'
 import CoverLetterCard from '../components/CoverLetterCard'
 import Loader from '../components/Loader'
 import ToastNotification from '../components/ToastNotification'
+import API_URL from '../utils/api'   // ✅ import kiya
 
 const CoverLetterGenerator = () => {
   const [coverLetter, setCoverLetter] = useState('')
@@ -15,29 +16,28 @@ const CoverLetterGenerator = () => {
     setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000)
   }
 
-const generateCoverLetter = async (formData) => {
-  setIsLoading(true)
-  try {
-    const response = await fetch('http://localhost:5000/api/cover-letter', {
-      method: 'POST',
-      body: formData, // ⚡ Important: FormData ke sath headers set mat karo!
-    })
-    
-    if (!response.ok) {
-      throw new Error('Cover letter generation failed')
+  const generateCoverLetter = async (formData) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch(`${API_URL}/api/cover-letter`, {
+        method: 'POST',
+        body: formData, // ⚡ FormData ke sath headers set mat karo!
+      })
+      
+      if (!response.ok) {
+        throw new Error('Cover letter generation failed')
+      }
+      
+      const data = await response.json()
+      setCoverLetter(data.coverLetter || data.text)
+      showToast('Cover letter generated successfully!', 'success')
+    } catch (error) {
+      console.error('Error generating cover letter:', error)
+      showToast('Failed to generate cover letter. Please try again.')
+    } finally {
+      setIsLoading(false)
     }
-    
-    const data = await response.json()
-    setCoverLetter(data.coverLetter || data.text)
-    showToast('Cover letter generated successfully!', 'success')
-  } catch (error) {
-    console.error('Error generating cover letter:', error)
-    showToast('Failed to generate cover letter. Please try again.')
-  } finally {
-    setIsLoading(false)
   }
-}
-
 
   return (
     <Container maxW="container.lg" py={8}>
